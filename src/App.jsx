@@ -43,7 +43,7 @@ function App() {
 
   return (
     <div className="App">
-      <AddTodo addTodo={addTodo} setFilt={setFilt} filt={filt}/>
+      <AddTodo addTodo={addTodo} setFilt={setFilt} filt={filt} />
       <div className="todos">
         {todos
           .filter((todo) => {
@@ -60,12 +60,16 @@ function App() {
                 className="n"
               />
               <span className={todo.done ? "done" : ""}>{todo.title}</span>
-              <button onClick={() => removeTodo(todo.id)}>
-                <FaTrash />
-              </button>
+              {filt === "completed" ? (
+                <button onClick={() => removeTodo(todo.id)}>
+                  <FaTrash />
+                </button>
+              ) : (
+                <></>
+              )}
             </div>
           ))}
-        {filt !== "active" ? (
+        {filt == "completed" ? (
           <button
             onClick={() => removeAllTodo(todos)}
             className="deleteAllButton">
